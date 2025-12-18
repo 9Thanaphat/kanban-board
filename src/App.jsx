@@ -68,7 +68,7 @@ function App() {
           style={currentAnimation}
           colors={currentPalette}
           loop={true}
-          seed={1000}
+          // seed={1000}
         />
       )}
       
