@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react'
 import { Color4Bg } from '@color4bg/react'
+import { useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
 import Board from './components/Board'
 import Footer from './components/Footer'
 
 function App() {
+  const [isMounted, setIsMounted] = useState(false);
 
-  const [palettes, setPalettes] = useState([
+  const [palettes] = useState([
     ["#11694E", "#48BF91", "#8FD9A8", "#15997A"],
     ["#2C3E50", "#34495E", "#7F8C8D", "#95A5A6"],
     ["#FF5F6D", "#FFC371", "#FF9A8B", "#FF6A88"],
@@ -19,7 +20,7 @@ function App() {
     ["#42275a", "#734b6d", "#141E30", "#243B55"]
   ]);
 
-  const [animations, setAnimations] = useState([
+  const [animations] = useState([
     "blur-gradient",
     "aesthetic-fluid",
     "abstract-shape",
@@ -36,6 +37,10 @@ function App() {
     const saved = localStorage.getItem('kanban-animation-index');
     return saved ? parseInt(saved, 10) : 0;
   });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('kanban-palette-index', paletteIndex);
@@ -57,21 +62,22 @@ function App() {
   const currentAnimation = animations[animationIndex];
 
   return (
-    <div className='relative'>
-      <Color4Bg
-        style={currentAnimation}
-        colors={currentPalette}
-        loop={true}
-        seed={1000}
-      />
+    <div className='relative min-h-screen overflow-hidden'>
+      {isMounted && (
+        <Color4Bg
+          style={currentAnimation}
+          colors={currentPalette}
+          loop={true}
+          seed={1000}
+        />
+      )}
+      
       <div className='relative z-10'>
         <NavBar changePalette={changePalette} changeAnimation={changeAnimation} />
         <Board />
         <Footer />
       </div>
-
     </div>
-
   )
 }
 
