@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Color4Bg } from '@color4bg/react'
 import NavBar from './components/NavBar'
 import Board from './components/Board'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -66,6 +67,7 @@ function App() {
       <div className='relative z-10'>
         <NavBar changePalette={changePalette} changeAnimation={changeAnimation} />
         <Board />
+        <Footer />
       </div>
 
     </div>

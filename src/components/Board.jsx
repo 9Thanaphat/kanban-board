@@ -71,7 +71,6 @@ const Board = () => {
   }
 
   const removeList = (id) => {
-    console.log("Removing list with id:", id);
     setLists(Lists.filter(list => list.id !== id));
   }
 
@@ -98,16 +97,16 @@ const Board = () => {
             ))}
             {provided.placeholder}
 
-            {!isAdding && <button onClick={() => setIsAdding(true)} className='p-5 mt-2 bg-white/40 h-10 rounded-xl flex items-center min-w-250px shrink-0 hover:bg-white/50'>
+            {!isAdding && Lists.length < 8 &&  <button onClick={() => setIsAdding(true)} className='p-5 mt-2 bg-white/40 h-10 rounded-xl flex items-center min-w-250px shrink-0 hover:bg-white/50'>
               Add another list
             </button>}
 
             {isAdding && <div className='pt-2 pb-2 pl-2 pr-2 bg-white/40 h-auto self-start rounded-xl flex flex-col'>
 
-              <input onChange={(e) => setNewTitle(e.target.value)} placeholder='Enter list name' className='bg-white w-full rounded-md'></input>
+              <input onChange={(e) => setNewTitle(e.target.value)} placeholder='Enter list name' className='bg-white/50 pl-2 pr-2 w-full rounded-md'></input>
               <div className='grid grid-cols-2 gap-2'>
-                <button onClick={() => addList(newTitle)} className='mt-2 bg-black rounded-md hover:bg-gray-800 text-white'>Add List</button>
-                <button onClick={() => setIsAdding(false)} className='mt-2 bg-black rounded-md hover:bg-gray-800 text-white'>Cancel</button>
+                <button onClick={() => addList(newTitle)} className='mt-2 bg-black/60 rounded-md hover:bg-black/70 text-white'>Add List</button>
+                <button onClick={() => setIsAdding(false)} className='mt-2 bg-black/60 rounded-md hover:bg-black/70 text-white'>Cancel</button>
               </div>
             </div>}
 

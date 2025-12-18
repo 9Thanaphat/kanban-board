@@ -33,7 +33,7 @@ const Card = ({ data, setCards, id, index }) => {
                     </span>
                     <button
                         onClick={removeCard}
-                        className='opacity-0 group-hover:opacity-100 transition-opacity bg-red-500/20 hover:bg-red-500 p-0.5 rounded text-[10px]'
+                        className='opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/10 p-0.5 rounded text-[10px]'
                     >
                         X
                     </button>
