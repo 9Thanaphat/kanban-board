@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PaintBucket, Sparkles } from "lucide-react";
 
 const NavBar = ({ changePalette, changeAnimation }) => {
 
-  const [boardName, setBoardName] = React.useState("カンバンボード");
-  const [isRenaming, setIsRenaming] = React.useState(false);
+  const [boardName, setBoardName] = useState(() => {
+    const savedName = localStorage.getItem('kanban-board-name');
+    return savedName ? savedName : "カンバンボード";
+  });
+
+  const [isRenaming, setIsRenaming] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('kanban-board-name', boardName);
+  }, [boardName]);
 
   return (
     <div className='w-full h-10 flex items-center justify-between bg-black/70 text-white shadow-sm text-2xl'>
@@ -24,7 +32,6 @@ const NavBar = ({ changePalette, changeAnimation }) => {
       >
       </input>}
 
-
       <div className='flex gap-1'>
         <button onClick={changePalette} className=' right-4 hover:bg-white/10 text-white text-sm px-2 py-1 rounded-md'>
           <PaintBucket className="w-4 h-4" />
@@ -33,7 +40,6 @@ const NavBar = ({ changePalette, changeAnimation }) => {
           <Sparkles className="w-4 h-4" />
         </button>
       </div>
-
 
     </div>
   )
