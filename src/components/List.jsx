@@ -5,9 +5,11 @@ import { Plus ,X } from "lucide-react";
 import Card from './Card';
 import { Droppable, Draggable } from '@hello-pangea/dnd';
 
-const List = ({ removeList, id, name, cards, setCards, index }) => {
+const List = ({ removeList, id, name, cards, setCards, index, renameList }) => {
 
   const [isAdding, setIsAdding] = useState(false);
+  const [isRenaming, setIsRenaming] = useState(false);
+  const [tempTitle, setTempTitle] = useState(name);
   const [newText, setNewText] = useState("");
 
   const handleRemove = () => {
@@ -37,6 +39,15 @@ const List = ({ removeList, id, name, cards, setCards, index }) => {
   setNewText("");
   }
 
+  const handleBlur = () => {
+    renameList(id, tempTitle);
+    setIsRenaming(false);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') handleBlur();
+  };
+
   return (
     <Draggable draggableId={String(id)} index={index}>
       {(provided) => (
@@ -45,10 +56,18 @@ const List = ({ removeList, id, name, cards, setCards, index }) => {
     className='bg-black/80 self-start h-auto text-white rounded-xl overflow-hidden flex flex-col min-w-70 m-2'>
       <div 
       {...provided.dragHandleProps}
-       className='bg-white/10 w-full h-8 flex items-center justify-center px-3 relative'>
-        <span className=''>{name}</span>
-        <button onClick={()=>handleRemove(id)} className='absolute right-2 bg-red-500 rounded-full hover:bg-red-400'>
-          <X size={16} strokeWidth={3}/>
+       className='bg-white/10 w-full h-8 flex items-center px-3 relative'>
+        {!isRenaming && <span onClick={()=>setIsRenaming(true)} className='hover:bg-white/10'>{name}</span>}
+        {isRenaming && <input 
+            autoFocus
+            value={tempTitle}
+            onChange={(e) => setTempTitle(e.target.value)} 
+            onBlur={handleBlur} onKeyDown={handleKeyDown} 
+            className='bg-white/50 text-black w-full mr-3 rounded-md px-1 outline-none'>
+          </input>}
+        <button 
+          onClick={()=>handleRemove(id)} 
+          className='absolute w-2.5 h-2.5 right-2 bg-red-500 rounded-full hover:bg-red-400'>
         </button>
       </div>
       <div className='flex flex-col items-center justify-center w-full'>
@@ -87,7 +106,7 @@ const List = ({ removeList, id, name, cards, setCards, index }) => {
       {isAdding && <div className='pt-2 pl-4 pr-4 w-full m-2  rounded-md flex flex-col'>
         <textarea onChange={(e) => setNewText(e.target.value)} className='bg-white w-full text-black rounded-md'></textarea>
         <div className='grid grid-cols-2'>
-          <button onClick={()=>addCard(newText)} className='mt-1bg-black rounded-md hover:bg-gray-800 text-white w-full'>Add Card</button>
+          <button onClick={()=>addCard(newText)} className='mt-1 bg-black rounded-md hover:bg-gray-800 text-white w-full'>Add Card</button>
           <button onClick={()=>setIsAdding(false)} className='mt-1 bg-black rounded-md hover:bg-gray-800 text-white w-full'>Cancel</button>
         </div>
       </div>}

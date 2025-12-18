@@ -10,6 +10,13 @@ const Board = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [newTitle, setNewTitle] = useState("");
 
+  const renameList = (id, newTitle) => {
+  if (!newTitle.trim()) return setIsRenaming(false);
+  setLists(Lists.map(list => 
+    list.id === id ? { ...list, title: newTitle } : list
+  ));
+}
+
 const handleOnDragEnd = (result) => {
     const { source, destination, type } = result;
     if (!destination)
@@ -65,6 +72,7 @@ const handleOnDragEnd = (result) => {
             removeList={removeList} 
             cards={cards} 
             setCards={setCards}
+            renameList={renameList}
             />
         ))}
         {provided.placeholder}
