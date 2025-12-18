@@ -43,7 +43,8 @@ const List = ({ removeList, id, name, cards, setCards, index, renameList }) => {
     setCards([...cards, {
       id: cardId,
       data: content,
-      listId: id
+      listId: id,
+      checked: false
     }]);
     setIsAdding(false);
     setNewText("");
@@ -94,6 +95,7 @@ const List = ({ removeList, id, name, cards, setCards, index, renameList }) => {
                       id={card.id}
                       index={index}
                       data={card.data}
+                      isChecked={card.checked}
                       setCards={setCards}
                     />
                   ))}

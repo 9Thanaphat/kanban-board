@@ -7,16 +7,16 @@ const Board = () => {
   const [Lists, setLists] = useState(() => {
     const savedLists = localStorage.getItem('kanban-lists');
     return savedLists ? JSON.parse(savedLists) : [
-      { id: '1', title: 'To Do' },
-      { id: '2', title: 'In Progress' },
-      { id: '3', title: 'Done' }
+      { id: '1', title: 'To Do', checked: false },
+      { id: '2', title: 'In Progress', checked: false },
+      { id: '3', title: 'Done', checked: false }
     ];
   });
   const [cards, setCards] = useState(() => {
     const savedCards = localStorage.getItem('kanban-cards');
     return savedCards ? JSON.parse(savedCards) : [
-      { id: '101', data: 'Task 1', listId: '1' },
-      { id: '201', data: 'Task 3', listId: '2' }
+      { id: '101', data: 'Task 1', listId: '1', checked: false },
+      { id: '201', data: 'Task 3', listId: '2', checked: false }
     ];
   });
 
@@ -73,7 +73,6 @@ const Board = () => {
   const removeList = (id) => {
     setLists(Lists.filter(list => list.id !== id));
   }
-
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
