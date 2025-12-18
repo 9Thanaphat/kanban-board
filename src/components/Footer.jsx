@@ -5,9 +5,7 @@ const Footer = () => {
   return (
     <footer className='w-full h-8 flex items-center justify-between bg-black/50 backdrop-blur-md text-white/50 px-6 fixed bottom-0 z-20'>
       <div className='flex items-center gap-1 text-xs font-light'>
-        <span>Made with</span>
-        <Heart size={12} className="text-red-500 fill-red-500" />
-        <span>by <span className='text-white/80 font-medium'>9Thanaphat</span></span>
+        <span>Made by <span className='text-white/80 font-medium'>9Thanaphat</span></span>
       </div>
 
       <div className='flex items-center gap-4 text-xs'>
