@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
+import { PaintBucket, Sparkles } from "lucide-react";
 
-
-
-const NavBar = () => {
+const NavBar = ({ changePalette, changeAnimation }) => {
 
   const [boardName, setBoardName] = React.useState("カンバンボード");
   const [isRenaming, setIsRenaming] = React.useState(false);
 
   return (
-    <div className='w-full h-10 flex items-center justify-center bg-black/70 text-white shadow-sm text-2xl'>
+    <div className='w-full h-10 flex items-center justify-between bg-black/70 text-white shadow-sm text-2xl'>
+      <div></div>
       {!isRenaming && <div onClick={() => setIsRenaming(true)} className='hover:cursor-pointer hover:bg-white/10'>
         {boardName}
       </div>}
@@ -23,6 +23,18 @@ const NavBar = () => {
         className='bg-white/50 text-black w-1/3 rounded-md px-1 outline-none'
       >
       </input>}
+
+
+      <div className='flex gap-1'>
+        <button onClick={changePalette} className=' right-4 hover:bg-white/10 text-white text-sm px-2 py-1 rounded-md'>
+          <PaintBucket className="w-4 h-4" />
+        </button>
+        <button onClick={changeAnimation} className=' right-32 hover:bg-white/10 text-white text-sm px-2 py-1 rounded-md'>
+          <Sparkles className="w-4 h-4" />
+        </button>
+      </div>
+
+
     </div>
   )
 }
