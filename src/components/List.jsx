@@ -64,17 +64,17 @@ const List = ({ removeList, id, name, cards, setCards, index, renameList }) => {
       {(provided) => (
         <div ref={provided.innerRef}
           {...provided.draggableProps}
-          className='bg-black/80 self-start h-auto text-white rounded-xl overflow-hidden flex flex-col min-w-70 m-2'>
+          className='bg-black/50 self-start h-auto text-white rounded-xl overflow-hidden flex flex-col min-w-70 m-2'>
           <div
             {...provided.dragHandleProps}
-            className='bg-white/10 w-full h-8 flex items-center px-3 relative'>
+            className='bg-black/20 w-full h-8 flex items-center px-3 relative'>
             {!isRenaming && <span onClick={() => setIsRenaming(true)} className='hover:bg-white/10'>{name}</span>}
             {isRenaming && <input
               autoFocus
               value={tempTitle}
               onChange={(e) => setTempTitle(e.target.value)}
               onBlur={handleBlur} onKeyDown={handleKeyDown}
-              className='bg-white/50 text-black w-full mr-3 rounded-md px-1 outline-none'>
+              className='bg-white/20 text-white w-full mr-3 rounded-md px-1 outline-none'>
             </input>}
             <button
               onClick={() => handleRemove(id)}
@@ -116,10 +116,10 @@ const List = ({ removeList, id, name, cards, setCards, index, renameList }) => {
             </div>}
 
             {isAdding && <div className='pt-2 pl-4 pr-4 w-full m-2  rounded-md flex flex-col'>
-              <textarea onChange={(e) => setNewText(e.target.value)} className='bg-white/40 w-full text-black rounded-md'></textarea>
-              <div className='grid grid-cols-2'>
-                <button onClick={() => addCard(newText)} className='mt-1 bg-black rounded-md hover:bg-gray-800 text-white w-full'>Add Card</button>
-                <button onClick={() => setIsAdding(false)} className='mt-1 bg-black rounded-md hover:bg-gray-800 text-white w-full'>Cancel</button>
+              <textarea onChange={(e) => setNewText(e.target.value)} className='bg-white/20 p-2 text-white w-full rounded-md'></textarea>
+              <div className='grid grid-cols-2 gap-2'>
+                <button onClick={() => addCard(newText)} className='mt-2 bg-black/50 rounded-md hover:bg-black/80 text-white w-full'>Add Card</button>
+                <button onClick={() => setIsAdding(false)} className='mt-2 bg-black/50 rounded-md hover:bg-black/80 text-white w-full'>Cancel</button>
               </div>
             </div>}
 

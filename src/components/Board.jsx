@@ -96,11 +96,11 @@ const Board = () => {
             ))}
             {provided.placeholder}
 
-            {!isAdding && Lists.length < 8 &&  <button onClick={() => setIsAdding(true)} className='p-5 mt-2 bg-white/40 h-10 rounded-xl flex items-center min-w-250px shrink-0 hover:bg-white/50'>
+            {!isAdding && Lists.length < 8 &&  <button onClick={() => setIsAdding(true)} className='p-5 mt-2 bg-white/20 backdrop-blur-md h-10 rounded-xl flex items-center min-w-250px shrink-0 hover:bg-white/30'>
               Add another list
             </button>}
 
-            {isAdding && <div className='pt-2 pb-2 pl-2 pr-2 bg-white/40 h-auto self-start rounded-xl flex flex-col'>
+            {isAdding && <div className='pt-2 mt-2 pb-2 pl-2 pr-2 bg-white/20 backdrop-blur-md h-auto self-start rounded-xl flex flex-col'>
 
               <input onChange={(e) => setNewTitle(e.target.value)} placeholder='Enter list name' className='bg-white/50 pl-2 pr-2 w-full rounded-md'></input>
               <div className='grid grid-cols-2 gap-2'>

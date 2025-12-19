@@ -21,7 +21,7 @@ const Card = ({ data, setCards, id, index, isChecked }) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className='bg-gray-800/40 text-white w-11/12 p-2 m-2 rounded-md shadow-md relative flex items-center gap-x-2 group'
+                    className='bg-black/40 text-white w-11/12 p-2 m-1 rounded-md shadow-md relative flex items-center gap-x-2 group'
                 >
                     <button onClick={toggleCheck} className='focus:outline-none'>
                         {isChecked ? 
